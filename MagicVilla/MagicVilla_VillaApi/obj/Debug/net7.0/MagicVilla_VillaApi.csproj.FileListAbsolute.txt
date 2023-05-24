@@ -31,3 +31,7 @@ D:\.NET\magic-villa\MagicVilla\MagicVilla_VillaApi\obj\Debug\net7.0\refint\Magic
 D:\.NET\magic-villa\MagicVilla\MagicVilla_VillaApi\obj\Debug\net7.0\MagicVilla_VillaApi.pdb
 D:\.NET\magic-villa\MagicVilla\MagicVilla_VillaApi\obj\Debug\net7.0\MagicVilla_VillaApi.genruntimeconfig.cache
 D:\.NET\magic-villa\MagicVilla\MagicVilla_VillaApi\obj\Debug\net7.0\ref\MagicVilla_VillaApi.dll
+D:\.NET\magic-villa\MagicVilla\MagicVilla_VillaApi\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\.NET\magic-villa\MagicVilla\MagicVilla_VillaApi\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\.NET\magic-villa\MagicVilla\MagicVilla_VillaApi\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\.NET\magic-villa\MagicVilla\MagicVilla_VillaApi\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
