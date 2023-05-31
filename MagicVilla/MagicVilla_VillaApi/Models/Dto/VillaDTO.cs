@@ -4,7 +4,7 @@ namespace MagicVilla_VillaApi.Models.Dto
 {
     public class VillaDTO
     {
-        [Key]
+        
         public int Id { get; set; }
         [Required]
         [MaxLength(30)]
