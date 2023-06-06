@@ -53,7 +53,7 @@ namespace MagicVilla_VillaApi.Controllers
 
 
         [HttpPost]
-        public ActionResult<VillaDTO> CreateVilla([FromBody]VillaDTO villaDTO)
+        public ActionResult<VillaDTO> CreateVilla([FromBody]VillaCreateDTO villaDTO)
         {
 
             if(_db.Villas.FirstOrDefault(u => u.Name.ToLower()==villaDTO.Name.ToLower()) != null)
@@ -66,15 +66,11 @@ namespace MagicVilla_VillaApi.Controllers
             {
                 return BadRequest(villaDTO);
             }
-            if(villaDTO.Id > 0)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError);
-            }
+            
             Villa model = new()
             {
                 Amenity = villaDTO.Amenity,
                 Details = villaDTO.Details,
-                Id = villaDTO.Id,
                 ImageUrl = villaDTO.ImageUrl,
                 Name = villaDTO.Name,
                 Occupancy = villaDTO.Occupancy,
@@ -85,7 +81,7 @@ namespace MagicVilla_VillaApi.Controllers
             _db.Villas.Add(model);
             _db.SaveChanges();
 
-            return CreatedAtRoute("GetVilla", new { id = villaDTO.Id },villaDTO);
+            return CreatedAtRoute("GetVilla", new { id = model.Id }, model);
         }
 
 
@@ -113,7 +109,7 @@ namespace MagicVilla_VillaApi.Controllers
         }
 
         [HttpPut("{id:int}", Name = "UpdateVilla")]
-        public IActionResult UpdateVilla(int id, [FromBody] VillaDTO villaDTO)
+        public IActionResult UpdateVilla(int id, [FromBody] VillaUpdateDTO villaDTO)
         {
             if(villaDTO == null || id != villaDTO.Id)
             {
@@ -139,7 +135,7 @@ namespace MagicVilla_VillaApi.Controllers
         [HttpPatch("{id:int}", Name= "UpdatePartialVilla")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public IActionResult UpdatePartialVIlla(int id, JsonPatchDocument<VillaDTO> patchDTO)
+        public IActionResult UpdatePartialVIlla(int id, JsonPatchDocument<VillaUpdateDTO> patchDTO)
         {
             if(patchDTO == null || id == 0)
             {
@@ -147,7 +143,7 @@ namespace MagicVilla_VillaApi.Controllers
             }
             var villa = _db.Villas.AsNoTracking().FirstOrDefault(u => u.Id == id);
 
-            var villaDTO = new VillaDTO()
+            var villaDTO = new VillaUpdateDTO()
             {
                 Amenity = villa.Amenity,
                 Details = villa.Details,
