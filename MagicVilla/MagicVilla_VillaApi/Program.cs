@@ -1,5 +1,6 @@
 
 
+using MagicVilla_VillaApi;
 using MagicVilla_VillaApi.Data;
 using MagicVilla_VillaApi.Logging;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"));
 });
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
