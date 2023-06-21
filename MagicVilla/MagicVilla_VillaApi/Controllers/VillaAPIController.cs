@@ -82,7 +82,7 @@ public class VillaAPIController : ControllerBase
 
 
     [HttpPost]
-    public async Task<ActionResult<APIResponse>> CreateVilla([FromBody] VillaCreateDTO createDTO)
+    public async Task<ActionResult<APIResponse>> CreateVilla([FromBody] VillaNumberCreateDTO createDTO)
     {
         try
         {
