@@ -45,7 +45,7 @@ public class VillaAPIController : ControllerBase
 
     }
 
-    [HttpGet("id:int", Name = "GetVilla")]
+    [HttpGet("{id:int}", Name = "GetVilla")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
