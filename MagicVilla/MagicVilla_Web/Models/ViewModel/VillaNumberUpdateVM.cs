@@ -8,10 +8,10 @@ public class VillaNumberUpdateVM
 {
     public VillaNumberUpdateVM()
     {
-        VillaNumber = new VillaNumberDeleteDTO();
+        VillaNumber = new VillaNumberUpdateDTO();
     }
 
-    public VillaNumberDeleteDTO VillaNumber { get; set; }
+    public VillaNumberUpdateDTO VillaNumber { get; set; }
     [ValidateNever]
     public IEnumerable<SelectListItem> VillaList { get; set; }
 }
