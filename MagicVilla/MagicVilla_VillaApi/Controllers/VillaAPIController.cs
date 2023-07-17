@@ -2,6 +2,7 @@
 using MagicVilla_VillaApi.Models;
 using MagicVilla_VillaApi.Models.Dto;
 using MagicVilla_VillaApi.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -25,6 +26,7 @@ public class VillaAPIController : ControllerBase
 
 
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<APIResponse>> GetVillas()
     {
         try
@@ -46,8 +48,11 @@ public class VillaAPIController : ControllerBase
     }
 
     [HttpGet("{id:int}", Name = "GetVilla")]
+    [Authorize(Roles = "admin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<APIResponse>> GetVilla(int id)
     {
@@ -120,7 +125,10 @@ public class VillaAPIController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [HttpDelete("{id:int}", Name = "DeleteVilla")]
+    [Authorize(Roles = "CUSTOM")]
     public async Task<ActionResult<APIResponse>> DeleteVilla(int id)
     {
         try
