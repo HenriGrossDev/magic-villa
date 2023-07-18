@@ -26,7 +26,7 @@ public class VillaAPIController : ControllerBase
 
 
     [HttpGet]
-    [Authorize]
+    
     public async Task<ActionResult<APIResponse>> GetVillas()
     {
         try
@@ -48,7 +48,6 @@ public class VillaAPIController : ControllerBase
     }
 
     [HttpGet("{id:int}", Name = "GetVilla")]
-    [Authorize(Roles = "admin")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -87,6 +86,7 @@ public class VillaAPIController : ControllerBase
 
 
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public async Task<ActionResult<APIResponse>> CreateVilla([FromBody] VillaCreateDTO createDTO)
     {
         try
@@ -128,7 +128,7 @@ public class VillaAPIController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [HttpDelete("{id:int}", Name = "DeleteVilla")]
-    [Authorize(Roles = "CUSTOM")]
+    [Authorize(Roles = "admin")]
     public async Task<ActionResult<APIResponse>> DeleteVilla(int id)
     {
         try
@@ -159,6 +159,7 @@ public class VillaAPIController : ControllerBase
     }
 
     [HttpPut("{id:int}", Name = "UpdateVilla")]
+    [Authorize(Roles = "admin")]
     public async Task<ActionResult<APIResponse>> UpdateVilla(int id, [FromBody] VillaUpdateDTO updateDTO)
     {
         try
@@ -188,6 +189,7 @@ public class VillaAPIController : ControllerBase
     [HttpPatch("{id:int}", Name = "UpdatePartialVilla")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> UpdatePartialVIlla(int id, JsonPatchDocument<VillaUpdateDTO> patchDTO)
     {
         if (patchDTO == null || id == 0)

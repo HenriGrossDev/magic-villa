@@ -2,8 +2,10 @@
 using MagicVilla_VillaApi.Models;
 using MagicVilla_VillaApi.Models.Dto;
 using MagicVilla_VillaApi.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Net;
 
 namespace MagicVilla_VillaApi.Controllers;
@@ -81,6 +83,7 @@ public class VillaNumberController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public async Task<ActionResult<APIResponse>> CreateVillaNumber([FromBody] VillaNumberCreateDTO createDTO)
     {
         try
@@ -126,6 +129,7 @@ public class VillaNumberController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [Authorize(Roles = "admin")]
     [HttpDelete("{id:int}", Name = "DeleteVillaNumber")]
     public async Task<ActionResult<APIResponse>> DeleteVillaNumber(int id)
     {
@@ -157,6 +161,7 @@ public class VillaNumberController : ControllerBase
     }
 
     [HttpPut("{id:int}", Name = "UpdateVillaNumber")]
+    [Authorize(Roles = "admin")]
     public async Task<ActionResult<APIResponse>> UpdateVillaNumber(int id, [FromBody] VillaNumberUpdateDTO updateDTO)
     {
         try
