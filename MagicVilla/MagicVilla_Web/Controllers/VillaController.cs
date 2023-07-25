@@ -33,9 +33,9 @@ namespace MagicVilla_Web.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> CreateVilla()
+        public Task<IActionResult> CreateVilla()
         {
-            return View();
+            return Task.FromResult<IActionResult>(View());
         }
 
         [HttpPost]

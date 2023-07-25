@@ -26,7 +26,10 @@ public class VillaAPIController : ControllerBase
 
 
     [HttpGet]
-    
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+
     public async Task<ActionResult<APIResponse>> GetVillas()
     {
         try
